@@ -9,13 +9,35 @@
     Bild austauschen :: check!
 */
 
-// Trigger-Btn.
+// Trigger Btn.
 let btn = document.getElementById("trigBtn");
 btn.addEventListener("click",actOnClick);
 
+// Trigger Input
+let field = document.getElementsByName("eingabe")[0];
+field.addEventListener("input", isInputValid);
+
 // Event-Dispatcher :: click
 function actOnClick() {
-    controller();
+    if (isInputValid()) {
+        controller();
+    } else {
+        ausgabe("Input nicht korrekt!");
+    } 
+}
+
+function isInputValid() {
+    
+    let inputStr = field.value;
+    var patt = /^[0-9]?[0-9]?[0-9]$/g;  //max 3 Ziffern zugelassen
+    let cond = patt.test(inputStr);
+
+    if (!cond) {
+        field.value = "";
+        updateImg("tee");
+    }
+
+    return cond;
 }
 
 function getInput() {
