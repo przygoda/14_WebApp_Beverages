@@ -4,10 +4,20 @@
 /* Der Plan
     Einlesen Daten von Webseite :: 
 	Check Daten :: 
-    Btn. Trigger :: 
-    Business-Logic (Alter --> Getränk) :: 
+    Btn. Trigger :: check!
+    Business-Logic (Alter --> Getränk) :: check!
     Bild austauschen :: check!
 */
+
+// Trigger-Btn.
+let btn = document.getElementById("trigBtn");
+btn.addEventListener("click",actOnClick);
+
+// Event-Dispatcher :: click
+function actOnClick() {
+    controller();
+}
+
 
 //Modul: Ablaufsteuerung (controller) --> Test:
 //controller();
@@ -15,7 +25,7 @@ function controller() {
 
     // actions
 
-    let bevStr    = checkAge();
+    let bevStr    = checkAge(3);
     let loadedImg = updateImg(bevStr);
 
     // monitoring
@@ -24,20 +34,20 @@ function controller() {
 }
 
 //Modul: Business-Logic --> Test:
-ausgabe(checkAge(2));
+/* ausgabe(checkAge(2));
 ausgabe(checkAge(6));
 ausgabe(checkAge(17));
-ausgabe(checkAge(20));
+ausgabe(checkAge(20)); */
 function checkAge(age) {
     switch (true) {
-        case (age >= 0) && (age <= 5):
-            return "milch";
-        case (age >= 6) && (age <= 12):
-            return "saft";
-        case (age >= 13) && (age <= 17):
-            return "cola";
+        case (age >= data.milk.lower) && (age <= data.milk.upper):
+            return data.milk.bev;
+        case (age >= data.juice.lower) && (age <= data.juice.upper):
+            return data.juice.bev;
+        case (age >= data.cola.lower) && (age <= data.cola.upper):
+            return data.cola.bev;
             default:
-            return "wein";   
+            return data.wine.bev;   
     } 
 }
 
