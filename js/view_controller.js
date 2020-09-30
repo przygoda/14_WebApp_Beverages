@@ -2,7 +2,7 @@
 /* View- Controller */
 
 /* Der Plan
-    Einlesen Daten von Webseite :: 
+    Einlesen Daten von Webseite :: check!
 	Check Daten :: 
     Btn. Trigger :: check!
     Business-Logic (Alter --> Getränk) :: check!
@@ -18,19 +18,23 @@ function actOnClick() {
     controller();
 }
 
+function getInput() {
+    let inputField = document.getElementsByName("eingabe")[0];
+    let age = parseInt(inputField.value); 
+    return age;
+}
 
 //Modul: Ablaufsteuerung (controller) --> Test:
 //controller();
 function controller() {
-
     // actions
-
-    let bevStr    = checkAge(3);
+    let ageNum    = getInput();
+    let bevStr    = checkAge(ageNum);
     let loadedImg = updateImg(bevStr);
 
     // monitoring
+    ausgabe("Getränk: " + bevStr);
     ausgabe("Bild: " + loadedImg + gui.img.ext);
-
 }
 
 //Modul: Business-Logic --> Test:
@@ -46,8 +50,10 @@ function checkAge(age) {
             return data.juice.bev;
         case (age >= data.cola.lower) && (age <= data.cola.upper):
             return data.cola.bev;
-            default:
-            return data.wine.bev;   
+        case (age >= data.wine.lower) && (age <= data.wine.upper):
+            return data.wine.bev;
+                default:
+                return data.default.bev;   
     } 
 }
 
