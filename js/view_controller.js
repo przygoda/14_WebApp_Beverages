@@ -10,6 +10,14 @@
 */
 
 
+//Modul: Bild austauschen --> Test:
+ausgabe(updateImg("milch"));
+function updateImg(imgName) {
+   let img = document.getElementById("bevImg");
+   img.src = gui.img.path + imgName + gui.img.ext;
+   return imgName;
+}
+
 
 //Modul: Konsolenausgabe --> Test:
 //ausgabe("test");
